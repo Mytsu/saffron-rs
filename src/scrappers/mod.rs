@@ -1,1 +1,1 @@
-pub mod boxnovel;
+pub(crate) mod boxnovel;

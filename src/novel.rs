@@ -2,6 +2,8 @@ use chrono::Local;
 use serde::Serialize;
 use url::Url;
 
+use crate::utils::errors::ErrorMessages;
+
 #[derive(Debug, Serialize)]
 pub struct Novel {
     title: String,
@@ -34,10 +36,13 @@ impl Novel {
             date: Local::now().to_rfc3339(),
             authors: authors.join(", "),
             cover_url: Url::parse(&cover_url)
-                .expect("Invalid coverUrl")
+                .expect(ErrorMessages::ParseUrl.as_str())
                 .as_str()
                 .to_owned(),
-            url: Url::parse(&url).expect("Invalid url").as_str().to_owned(),
+            url: Url::parse(&url)
+                .expect(ErrorMessages::ParseUrl.as_str())
+                .as_str()
+                .to_owned(),
             chapters,
         }
     }
@@ -45,6 +50,9 @@ impl Novel {
 
 impl Chapter {
     pub fn new(title: String, content: Vec<String>) -> Chapter {
-        Chapter { title, content: content.join("\n\n") }
+        Chapter {
+            title,
+            content: content.join("\n\n"),
+        }
     }
 }
