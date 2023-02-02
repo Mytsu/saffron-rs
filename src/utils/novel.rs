@@ -1,4 +1,3 @@
-use chrono::Local;
 use serde::Serialize;
 use url::Url;
 
@@ -8,7 +7,6 @@ use crate::utils::errors::ErrorMessages;
 pub struct Novel {
     title: String,
     synopsis: String,
-    date: String,
     authors: String,
     cover_url: String,
     url: String,
@@ -33,7 +31,6 @@ impl Novel {
         Novel {
             title,
             synopsis: synopsis.join("\n\n"),
-            date: Local::now().to_rfc3339(),
             authors: authors.join(", "),
             cover_url: Url::parse(&cover_url)
                 .expect(ErrorMessages::ParseUrl.as_str())

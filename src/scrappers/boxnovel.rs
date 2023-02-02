@@ -1,5 +1,5 @@
-use crate::novel::{Chapter, Novel};
 use crate::utils::errors::ErrorMessages;
+use crate::utils::novel::{Chapter, Novel};
 use crate::utils::scraper::{get_content, get_element_ref, get_selector};
 use reqwest::blocking::{get, Client};
 use scraper::{Html, Selector};
@@ -19,9 +19,7 @@ pub(crate) const REQUEST_DELAY: u64 = 500;
 pub(crate) fn get_novel(input: &str) -> Novel {
     let url = Url::parse(input).expect(ErrorMessages::ParseUrl.as_str());
     assert!(
-        url.host_str()
-            .expect(ErrorMessages::ParseHostname.as_str())
-            == HOSTNAME,
+        url.host_str().expect(ErrorMessages::ParseHostname.as_str()) == HOSTNAME,
         "Hostname doesn't match {}",
         HOSTNAME
     );

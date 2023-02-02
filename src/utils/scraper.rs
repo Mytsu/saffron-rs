@@ -2,18 +2,18 @@ use scraper::{ElementRef, Html, Selector};
 
 use super::errors::ErrorMessages;
 
-pub fn get_selector(tag: &str) -> Selector {
+pub(crate) fn get_selector(tag: &str) -> Selector {
     Selector::parse(tag).expect(ErrorMessages::ParseSelector.as_str())
 }
 
-pub fn get_element_ref<'a>(selector: &Selector, fragment: &'a Html) -> ElementRef<'a> {
+pub(crate) fn get_element_ref<'a>(selector: &Selector, fragment: &'a Html) -> ElementRef<'a> {
     fragment
         .select(selector)
         .next()
         .expect(ErrorMessages::FindElement.as_str())
 }
 
-pub fn get_content(tag: &str, html: &str) -> Vec<String> {
+pub(crate) fn get_content(tag: &str, html: &str) -> Vec<String> {
     let selector = Selector::parse(tag).unwrap();
     Html::parse_document(html)
         .select(&selector)

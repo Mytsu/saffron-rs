@@ -1,4 +1,4 @@
-pub enum ErrorMessages {
+pub(crate) enum ErrorMessages {
     ParseUrl,
     ParseHostname,
     ParseSelector,
@@ -8,6 +8,7 @@ pub enum ErrorMessages {
     JoinUrl,
     SendRequest,
     FindElement,
+    IncompatibleDomain,
 }
 
 impl ErrorMessages {
@@ -22,6 +23,7 @@ impl ErrorMessages {
             ErrorMessages::JoinUrl => "Failed to join url path",
             ErrorMessages::SendRequest => "Failed to send request",
             ErrorMessages::FindElement => "Failed to find element",
+            ErrorMessages::IncompatibleDomain => "Domain doesn't have available scraper",
         }
     }
 }
