@@ -1,5 +1,6 @@
 [package]
-name = "saffron"
+name = "saffron-rs"
+package = "saffron-scrapper"
 description = "A web novel scrapper."
 readme = "README.md"
 repository = "https://github.com/Mytsu/saffron-rs.git"
