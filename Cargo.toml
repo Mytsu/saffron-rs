@@ -3,7 +3,6 @@ name = "saffron"
 description = "A web novel scrapper."
 readme = "README.md"
 repository = "https://github.com/Mytsu/saffron-rs.git"
-license = "MIT"
 license-file = "LICENSE"
 keywords = ["novel", "webnovel", "scrapper", "wuxia", "xianxia", "qidian", "romance"]
 categories = ["command-line-utilities"]
