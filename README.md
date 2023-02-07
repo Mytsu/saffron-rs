@@ -15,3 +15,7 @@ Example for `saffron-rs-x86_64-pc-windows-msvc.exe` on [PowerShell](https://lear
 ## Run from Source
 
 Clone the repository (or download the source as zip and unzip it) and use `cargo run`
+
+## Install from [crates.io](https://crates.io/crates/saffron-rs)
+
+Run `cargo install saffron-rs` in your terminal (must have rust installed to use the cargo cli).
