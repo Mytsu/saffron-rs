@@ -16,6 +16,26 @@ use utils::errors::ErrorMessages;
 struct Args {
     #[arg(short, long)]
     url: String,
+    #[arg(short, long, default_value_t = false)]
+    chapter: bool,
+}
+
+fn scrap(url: &Url, args: &Args) {
+    if args.chapter {
+        let chapter = boxnovel::get_chapter(&parsed_url);
+        fs::write(
+            format!("./{}.json", chapter.title),
+            serde_json::to_string_pretty(&chapter).expect("Failed to parse novel to json"),
+        )
+        .expect("Failed to write file");
+        return ();
+    }
+    let novel = boxnovel::get_novel(&args.url);
+    fs::write(
+        format!("./{}.json", novel.title),
+        serde_json::to_string_pretty(&novel).expect("Failed to parse novel to json"),
+    )
+    .expect("Failed to write file");
 }
 
 fn main() {
@@ -25,14 +45,7 @@ fn main() {
         .host_str()
         .expect(ErrorMessages::ParseHostname.as_str());
     match hostname {
-        boxnovel::HOSTNAME => {
-            let novel = boxnovel::get_novel(&args.url);
-            fs::write(
-                "./novel.json",
-                serde_json::to_string_pretty(&novel).expect("Failed to parse novel to json"),
-            )
-            .expect("Failed to write file");
-        }
+        boxnovel::HOSTNAME => {}
         _ => {
             println!("{}", ErrorMessages::IncompatibleDomain.as_str());
         }
