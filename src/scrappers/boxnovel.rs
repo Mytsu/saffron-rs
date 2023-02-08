@@ -13,7 +13,7 @@ pub(crate) const NOVEL_SYNOPSIS: &str = ".summary__content p";
 pub(crate) const AUTHOR: &str = ".author-content > a";
 pub(crate) const CHAPTER_URL: &str = "li.wp-manga-chapter > a";
 pub(crate) const CHAPTER_TITLE: &str = ".breadcrumb li.active";
-pub(crate) const CHAPTER_CONTENT: &str = ".text-left > p";
+pub(crate) const CHAPTER_CONTENT: &str = ".text-left p";
 pub(crate) const REQUEST_DELAY: u64 = 500;
 
 pub(crate) fn get_novel(input: &str) -> Novel {
