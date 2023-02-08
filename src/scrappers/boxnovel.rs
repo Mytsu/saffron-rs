@@ -16,8 +16,7 @@ pub(crate) const CHAPTER_TITLE: &str = ".breadcrumb li.active";
 pub(crate) const CHAPTER_CONTENT: &str = ".text-left p";
 pub(crate) const REQUEST_DELAY: u64 = 500;
 
-pub(crate) fn get_novel(input: &str) -> Novel {
-    let url = Url::parse(input).expect(ErrorMessages::ParseUrl.as_str());
+pub(crate) fn get_novel(url: &Url) -> Novel {
     assert!(
         url.host_str().expect(ErrorMessages::ParseHostname.as_str()) == HOSTNAME,
         "Hostname doesn't match {}",
@@ -37,7 +36,7 @@ pub(crate) fn get_novel(input: &str) -> Novel {
         get_novel_synopsis(&body),
         get_novel_author(&body),
         get_cover_url(&body),
-        input.to_string(),
+        url.as_str().to_owned(),
         chapters,
     )
 }

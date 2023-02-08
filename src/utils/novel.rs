@@ -5,18 +5,18 @@ use crate::utils::errors::ErrorMessages;
 
 #[derive(Debug, Serialize)]
 pub struct Novel {
-    title: String,
-    synopsis: String,
-    authors: String,
-    cover_url: String,
-    url: String,
-    chapters: Vec<Chapter>,
+    pub title: String,
+    pub synopsis: String,
+    pub authors: String,
+    pub cover_url: String,
+    pub url: String,
+    pub chapters: Vec<Chapter>,
 }
 
 #[derive(Debug, Serialize)]
 pub struct Chapter {
-    title: String,
-    content: String,
+    pub title: String,
+    pub content: String,
 }
 
 impl Novel {

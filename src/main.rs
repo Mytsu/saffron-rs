@@ -22,7 +22,7 @@ struct Args {
 
 fn scrap(url: &Url, args: &Args) {
     if args.chapter {
-        let chapter = boxnovel::get_chapter(&parsed_url);
+        let chapter = boxnovel::get_chapter(&url);
         fs::write(
             format!("./{}.json", chapter.title),
             serde_json::to_string_pretty(&chapter).expect("Failed to parse novel to json"),
@@ -30,7 +30,7 @@ fn scrap(url: &Url, args: &Args) {
         .expect("Failed to write file");
         return ();
     }
-    let novel = boxnovel::get_novel(&args.url);
+    let novel = boxnovel::get_novel(&url);
     fs::write(
         format!("./{}.json", novel.title),
         serde_json::to_string_pretty(&novel).expect("Failed to parse novel to json"),
@@ -45,7 +45,7 @@ fn main() {
         .host_str()
         .expect(ErrorMessages::ParseHostname.as_str());
     match hostname {
-        boxnovel::HOSTNAME => {}
+        boxnovel::HOSTNAME => scrap(&parsed_url, &args),
         _ => {
             println!("{}", ErrorMessages::IncompatibleDomain.as_str());
         }
